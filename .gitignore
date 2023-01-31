@@ -1,0 +1,10 @@
+xcelium.d
+*.ucd
+*.log
+*.history
+*.rpt
+*.ucm
+*.vcd
+*.key
+*.so
+*.json

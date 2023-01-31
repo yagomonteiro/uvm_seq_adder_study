@@ -72,7 +72,7 @@ module tb;
         @(posedge clk);
         $display("DATA A: %H, DATA B: %H, OP: %h , RESULT: %h",  i_data_a , i_data_b , i_op_selector , o_data_result);
 
-        //  @(posedge clk);
+        
         i_op_selector = OP_REV;     
         i_data_a [15:0] = 16'hFF;        
         @(posedge clk);

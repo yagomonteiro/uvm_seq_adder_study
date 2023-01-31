@@ -60,10 +60,6 @@ always @(posedge clk or rst) begin
             end
         endcase
 
-        o_data_valid =1;
-
-
-    
     end
 
     

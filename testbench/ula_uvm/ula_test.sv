@@ -4,10 +4,10 @@
 */
 
 class ula_test extends uvm_test;
-    `uvm_component_utils(ula_test);
+    `uvm_component_utils(ula_test)
 
-    seq_adder_generator gen;
-    seq_adder_env e;
+    ula_generator gen;
+    ula_env e;
 
     
     function new(input string path = "ula_test", uvm_component parent = null); //inst = TEST??
@@ -15,9 +15,9 @@ class ula_test extends uvm_test;
     endfunction
 
     virtual function void build_phase(uvm_phase phase);
-        super.build(phase);
-        gen = seq_adder_generator::type_id::create("gen");
-        e   = seq_adder_generator::type_id::create("e",this);        
+        super.build_phase(phase);
+        gen = ula_generator::type_id::create("gen",this);
+        e   = ula_env::type_id::create("e",this);        
     endfunction
 
     virtual function void end_of_elaboration_phase(uvm_phase phase);

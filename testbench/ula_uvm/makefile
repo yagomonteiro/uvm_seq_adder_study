@@ -10,16 +10,16 @@ UVM_FLAGS= -uvm +UVM_NO_RELNOTES
 
 PKG = ./ula_resources.sv
 
-DUT = ../../design/ula.sv
+DUT = 
 
 MODEL = ../../model/ula.c
 
 test:
 	@echo This is a makefile test
 run:	
-	$(XRUN) $(COMP_FLAGS) $(UVM_FLAGS) $(PKG) $(DUT) $(TB).sv
+	$(XRUN) $(COMP_FLAGS) $(UVM_FLAGS)  $(PKG) $(DUT) $(TB).sv
 gui:	
-	$(XRUN) $(COMP_FLAGS) $(UVM_FLAGS) $(SV_FILES) $(TB).sv -gui
+	$(XRUN) $(COMP_FLAGS) $(UVM_FLAGS) $(PKG) $(DUT) $(TB).sv -gui
 clean:
 	@rm -rf xcelium.d x* .simv* simv* dump* waves* mdv.* imc*
 	@rm -rf cov_work report

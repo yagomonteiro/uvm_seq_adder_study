@@ -12,7 +12,9 @@ class ula_agent extends uvm_agent;
     uvm_analysis_port#(ula_transaction) send;
 
     function new(input string path = "ula_agent", uvm_component parent = null); // TODO:check c
-        super.new(path, parent);        
+        super.new(path, parent);
+        send = new("send", this);
+
     endfunction
 
     ula_monitor m;
@@ -22,7 +24,7 @@ class ula_agent extends uvm_agent;
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         m = ula_monitor::type_id::create("m",this);
-        d = ula_monitor::type_id::create("d",this);
+        d = ula_driver::type_id::create("d",this);
         seqr = uvm_sequencer#(ula_transaction)::type_id::create("seqr",this);
     endfunction
 

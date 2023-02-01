@@ -6,7 +6,7 @@
 
 class ula_env extends uvm_env;
 
-    `uvm_component_utils(ula_env);
+    `uvm_component_utils(ula_env)
 
     function new(input string path = "ula_env", uvm_component parent = null );
         super.new(path, parent);        
@@ -16,10 +16,10 @@ class ula_env extends uvm_env;
     ula_scoreboard s;
     //add coverage colector here
 
-    virtual function build_phase(uvm_phase phase);
-        super.build(phase);
-        a = ula_transaction::type_id::create("a", this);
-        s = ula_transaction::type_id::create("s", this);
+    virtual function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
+        a = ula_agent::type_id::create("a", this);
+        s = ula_scoreboard::type_id::create("s", this);
     endfunction
 
     virtual function void connect_phase(uvm_phase phase);

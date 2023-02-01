@@ -17,11 +17,15 @@ class ula_generator extends uvm_sequence#(ula_transaction);
     //virtual task:
 
     virtual task body();
-        sat = ula_transaction::type_id::create("t");    
+        t = ula_transaction::type_id::create("t");    
         //defines the number of sequences applied to dut
-        repeat (10) begin
+        repeat (5) begin
             start_item(t);
-            sat.randomize();
+            // assert(t.randomize());       // just randomize data from class transaction
+            t.i_data_a = $urandom();
+            t.i_data_b = $urandom();
+            t.i_op_selector = $urandom_range(0,15);
+
             finish_item(t);     
         end
     endtask

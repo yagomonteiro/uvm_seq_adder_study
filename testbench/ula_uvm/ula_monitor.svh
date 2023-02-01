@@ -33,7 +33,7 @@ class ula_monitor extends uvm_agent;
 
     virtual task run_phase(uvm_phase phase);        
         forever begin
-            #10; //same delay in the end of stimuli application 
+            #10; //same delay in the end of stimuli application            
 
             t.i_op_selector = aif.i_op_selector;
             t.i_data_a = aif.i_data_a;
@@ -42,7 +42,7 @@ class ula_monitor extends uvm_agent;
             t.o_data_result = aif.o_data_result;
             t.o_data_carryout = aif.o_data_carryout;
 
-            `uvm_info("MON", $sformatf("RCVD MON==> OP: %h, A: %h, B: %h | VALID: %h, RESULT: %h, CARRY: %h ", t.i_op_selector, t.i_data_a, t.i_data_b, t.o_data_valid, t.o_data_result, t.o_data_carryout), UVM_NONE);
+            `uvm_info("MON", $sformatf("RCVD MON<== OP: %h, A: %h, B: %h | VALID: %h, RESULT: %h, CARRY: %h ", t.i_op_selector, t.i_data_a, t.i_data_b, t.o_data_valid, t.o_data_result, t.o_data_carryout), UVM_NONE);
 
             send.write(t); //send transaction to analysis port. (write will be defined)
         end

@@ -17,11 +17,14 @@ module tb_top();
     logic rst=0;
     logic clk=0;
 
+    always #5   clk = ~clk;
+    always #100 rst = ~rst;
+
     ula_if aif();
 
     ula dut(
-        .rst(aif.rst),
-        .clk(aif.clk),
+        .rst(rst),
+        .clk(clk),
         .i_op_selector(aif.i_op_selector),
         .i_data_a(aif.i_data_a),
         .i_data_b(aif.i_data_b),

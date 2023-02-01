@@ -39,11 +39,11 @@ module ula(
             o_data_valid    =0;
             o_data_result   =0;
             o_data_carryout =0;        
-            $display("RESET DONE!!!!!!!!!!!!!!!!!!!!!!!");
+            $display("[ULA LOG] RESET DONE!");
         end
 
         else begin
-            $display("NORMAL MODE OPERATION");       
+            $display("[ULA LOG] NORMAL MODE OPERATION");       
 
             case (i_op_selector)
                 OP_ADD: add_op(i_data_a,i_data_b,o_data_valid,o_data_result,o_data_carryout);

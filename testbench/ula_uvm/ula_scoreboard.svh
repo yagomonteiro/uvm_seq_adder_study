@@ -22,6 +22,6 @@ class ula_scoreboard extends uvm_scoreboard;
 
     virtual function void write(input ula_transaction tr);
         t = tr;
-        `uvm_info("[SCOREBOARD]", "SCOREBOARD SANITY", UVM_NONE);
+        `uvm_info("[SCOREBOARD]", "SCOREBOARD SANITY\n\n", UVM_NONE);
     endfunction
 endclass

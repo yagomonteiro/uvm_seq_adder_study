@@ -24,7 +24,7 @@ class ula_generator extends uvm_sequence#(ula_transaction);
             // assert(t.randomize());       // just randomize data from class transaction
             t.i_data_a = $urandom();
             t.i_data_b = $urandom();
-            t.i_op_selector = $urandom_range(0,15);
+            t.i_op_selector = $urandom_range(1,4);
 
             finish_item(t);     
         end

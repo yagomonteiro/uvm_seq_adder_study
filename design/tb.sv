@@ -1,4 +1,4 @@
-`include "seq_adder.sv"
+`include "ula.sv"
 
 
 module tb;
@@ -12,7 +12,7 @@ module tb;
     wire [31:0] o_data_result;
     wire o_data_carryout;
 
-    sequential_basic_ula dut (rst,clk,i_op_selector, i_data_a,i_data_b, o_data_valid, o_data_result, o_data_carryout);
+    ula dut (rst,clk,i_op_selector, i_data_a,i_data_b, o_data_valid, o_data_result, o_data_carryout);
 
 
     always #5 clk = ~clk;

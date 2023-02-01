@@ -6,7 +6,7 @@
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 
-class transaction_seq_adder extends uvm_sequence_item;
+class ula_transaction extends uvm_sequence_item;
 
     //describes the form of a stimulus to be applied to dut
 
@@ -20,19 +20,19 @@ class transaction_seq_adder extends uvm_sequence_item;
     rand logic o_data_carryout;
 
     //constructor
-    function new(input string path="transaction_seq_adder");
+    function new(input string path="ula_transaction");
         super.new(path);
     endfunction
 
     //registering datafields to factory
-    `uvm_object_utils_begin(transaction_seq_adder);
+    `uvm_object_utils_begin(ula_transaction);
         `uvm_field_int(i_op_selector, UVM_DEFAULT);
         `uvm_field_int(i_data_a, UVM_DEFAULT);
         `uvm_field_int(i_data_b, UVM_DEFAULT);
         `uvm_field_int(o_data_result, UVM_DEFAULT);
         `uvm_field_int(o_data_valid, UVM_DEFAULT);
         `uvm_field_int(o_data_carryout, UVM_DEFAULT);
-    `uvm_object_utils_end;
+    `uvm_object_utils_end
 
 
 endclass

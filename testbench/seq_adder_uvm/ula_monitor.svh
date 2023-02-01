@@ -4,28 +4,28 @@
 */
 
 
-class seq_adder_monitor extends uvm_monitor;
+class ula_monitor extends uvm_monitor;
     
-    `uvm_component_utils("seq_adder_monitor");
+    `uvm_component_utils("ula_monitor");
 
     //create port from monitor to agent (good reuse practice)
-    uvm_analysis_port#(seq_adder_transaction) send;
+    uvm_analysis_port#(ula_transaction) send;
 
-    seq_adder_transaction sat;
-    virtual seq_adder_interface aif;
+    ula_transaction sat;
+    virtual ula_interface aif;
 
       
     
-    function new(input string path = "seq_adder_monitor", uvm_component parent = null);
+    function new(input string path = "ula_monitor", uvm_component parent = null);
         super.new(path);
         send = new("send", this);
     endfunction
 
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        sat = seq_adder_transaction::type_id::create("sat");
+        t = ula_transaction::type_id::create("t");
 
-        if(!uvm_config_db#(virtual seq_adder_interface)::get(this,"", "aif", aif)) begin
+        if(!uvm_config_db#(virtual ula_interface)::get(this,"", "aif", aif)) begin
             `uvm_error("[MONITOR]", "Unable to access uvm_config_db");
         end
 

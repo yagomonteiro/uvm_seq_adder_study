@@ -43,7 +43,8 @@ module ula(
         end
 
         else begin
-            $display("[ULA LOG] NORMAL MODE OPERATION");       
+            $display("[ULA LOG] NORMAL MODE OPERATION");
+            o_data_valid    =0; //before operation data is invalid       
 
             case (i_op_selector)
                 OP_ADD: add_op(i_data_a,i_data_b,o_data_valid,o_data_result,o_data_carryout);
@@ -68,46 +69,48 @@ module ula(
 
     task add_op(input [15:0] a, input [15:0] b, output valid,  output [15:0] result, output carry );         
         {carry,result} = a + b;
-        valid <= 1;    
-        $display("======ADD_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h \n\n ", a, b,  {carry,result});
+        valid = 1;    
+        $display("======ADD_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h VALID: %h \n\n ", a, b,  {carry,result}, valid);
 
     endtask
 
     task sub_op(input [15:0] a, input [15:0] b, output  valid,  output [15:0] result, output carry );   
         {carry, result[15:0]} = a - b;
-        valid <= 1;
-        $display("======SUB_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h \n\n", a, b,  {carry, result}); 
+        valid = 1;
+        $display("======SUB_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h VALID >> %h \n\n", a, b,  {carry, result}, valid); 
     endtask
 
     task mul_op(input [15:0] a, input [15:0] b, output valid,  output [15:0] result, output carry );   
         {carry,result} = a * b;
-        valid <= 1;
-        $display("======MUL_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h \n\n", a, b,  {carry, result});    
+        valid = 1;
+        $display("======MUL_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h  VALID >> %h  \n\n", a, b,  {carry, result},valid);    
     endtask
 
     task div_op(input [15:0] a, input [15:0] b, output valid,  output [15:0] result, output carry );   
         //TODO: REVIEW THIS
         {carry,result} = a / b;
-        valid <= 1;
-        $display("====== DIV_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h \n\n", a, b,  {carry, result});    
+        valid = 1;
+        $display("====== DIV_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h VALID >> %h \n\n", a, b,  {carry, result}, valid);    
     endtask
 
-    task and_op(input [31:0] a, input [31:0] b, output valid,  output [31:0] result, output carry );   
+    task and_op(input [31:0] a, input [31:0] b, output valid,  output [31:0] result, output carry );
+        carry =0;      
         result = a & b;
-        valid <= 1;
-        $display("====== AND_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h \n\n", a, b,  result);    
+        valid = 1;
+        $display("====== AND_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h VALID >> %h \n\n", a, b,  {carry, result}, valid);
     endtask
 
-    task or_op(input [31:0] a, input [31:0] b, output valid,  output [31:0] result, output carry );   
+    task or_op(input [31:0] a, input [31:0] b, output valid,  output [31:0] result, output carry );
+        carry =0;  
         {carry,result} = a | b;
-        valid <= 1;
-        $display("====== OR_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h \n\n", a, b,  {carry, result[31:0]});    
+        valid = 1;
+        $display("====== OR_OP Received params:  A-> %h B-> %h  | OUTPUT >> %h VALID >> %h \n\n", a, b,  {carry, result}, valid);
     endtask
 
     task xor_op(input [31:0] a, input [31:0] b, output  valid,  output [31:0] result, output carry );   
         {carry,result} = a ^ b;
-        valid <= 1;
-        $display("====== XOR_OP Received params:  A-> %h B-> %h \n\n ", a, b);    
+        valid = 1;
+        $display("====== XOR_OP Received params:  A-> %h B-> %h OUTPUT >> %h VALID >> %h \n\n", a, b,  {carry, result}, valid);   
     endtask
 
     task rev_op(input [31:0] a, valid,  output [31:0] result, output carry );  
@@ -115,7 +118,7 @@ module ula(
         for (int i=0; i<32; ++i) begin
         result [i] = a[31-i];       
         end
-        valid <= 1;
+        valid = 1;
         $display("====== REV_OP Received params:  A-> %h \n\n", a);        
         
     endtask

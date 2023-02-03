@@ -1,31 +1,29 @@
 #include <stdio.h>
-
-typedef enum { 
-    OP_UNUSED = 0,
-    OP_ADD, 
-    OP_SUB,
-    OP_MUL,
-    OP_DIV,
-    OP_AND,
-    OP_OR,
-    OP_XOR,
-    OP_REV,
-         
-     
-} op;
-
-
-
-
-// extern "C" int add_op(__uint16_t i_data_a, __uint16_t i_data_b,__uint16_t o_data_valid, __uint32_t o_data_result, __uint16_t o_data_carryout)
-// {
-
-
-
-// }
+#include "ula.h"
 
 
 int main()
 {
-    printf("\n\ncompilou.\n\n");
+    
+    int i=0;
+
+    unsigned short rst =0;
+    unsigned short clk =0;
+    unsigned short i_op_selector=1;
+    unsigned short i_data_a=0xF000;
+    unsigned short i_data_b=2;
+    unsigned short o_data_valid=0;
+    unsigned int o_data_result=0;
+    unsigned short o_data_carryout=0;
+
+    rst=0;    
+
+    //checking ops
+    for ( i = 0; i < END_OF_OP_SIZE; i++)
+    {
+        ula(rst, clk, i_op_selector+i, i_data_a, i_data_b, &o_data_valid, &o_data_result, &o_data_carryout);
+    }
+    
+
+
 }

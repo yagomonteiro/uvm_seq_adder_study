@@ -22,6 +22,18 @@ class ula_scoreboard extends uvm_scoreboard;
 
     virtual function void write(input ula_transaction tr);
         t = tr;
-        `uvm_info("[SCOREBOARD]", "SCOREBOARD SANITY\n\n", UVM_NONE);
+
+
+        //Remember> comparations are made at the Transaction Level. Is not possible to 
+        if (t.o_data_valid) begin            
+            `uvm_info("[SCOREBOARD]", $sformatf("SCBRD VALID OPERATION IDENTIFIED\n\n OP: %h, A: %h, B: %h | VALID: %h, RESULT: %h, CARRY: %h ", t.i_op_selector, t.i_data_a, t.i_data_b, t.o_data_valid, t.o_data_result, t.o_data_carryout), UVM_NONE);
+        end     
+       
+        
+        
+        
+           
     endfunction
+
+
 endclass
